@@ -1,0 +1,6 @@
+xgboost
+fastapi
+"uvicorn[standard]" gunicorn
+#tmux new -s binaryapi
+#gunicorn main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+#ctrl+b d
