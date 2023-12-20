@@ -49,4 +49,4 @@ for i, email in enumerate(emails['text'].values):
         params = {"email": email}
         response = requests.post(url, params=params)
         res = json.loads(response.text)
-        print('@@@@@@@','ground truth:', emails['label'][i], res['is_maintenance'],res)
+        print('@@@@@@@','ground truth:', emails['label'][i], res['is_maintenance'])
