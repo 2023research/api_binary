@@ -9,3 +9,11 @@ for i, email in enumerate(emails['text'].values):
         response = requests.post(url, params=params)
 
         print('ground truth:', emails['label'][i], response.text)
+
+df=pd.read_csv('./results/126_cate_data.csv')
+    
+for i, email in enumerate(df['Body'].values):
+    if i<10:
+        params = {"email": email}
+        response = requests.post(url, params=params)
+        print('ground truth:', emails['label'][i], response.text)
