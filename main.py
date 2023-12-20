@@ -14,7 +14,7 @@ def read_item(email: str):
         cates = cate_predictor(email)
         issues = {}
         for i in range(len(cates)):
-            row = cates[0]
+            row = cates[i]
             row = row.split('@')
             issues[i]={'area':row[0],'location':row[1],'Msubtype':row[2],'Mmaintype':row[3]}
         
