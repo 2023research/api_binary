@@ -93,6 +93,7 @@ def cate_predictor(email):
     pred = predictions.toarray()    
     print (pred[0]==1,cate_names)
     pred = cate_names[pred[0]==1]
+    print (pred)
     return pred.values
 if __name__ == '__main__':
 
