@@ -90,9 +90,9 @@ def cate_predictor(email):
 
     # predict
     predictions = classifier.predict(xval_tfidf)
-    pred = predictions.toarray()
-    pred = cate_names[pred[0]==1]
+    pred = predictions.toarray()    
     print (pred[0]==1)
+    pred = cate_names[pred[0]==1]
     return pred.values
 if __name__ == '__main__':
 
