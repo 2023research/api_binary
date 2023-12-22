@@ -1,8 +1,20 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from model2000API import xgb_predictor
 from email_location_126_onelabel_api_ready import cate_predictor
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    # allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+
 class_dict = {0:'non-maintenance',1:'maintenance'}
 
 # what is an emial related to
