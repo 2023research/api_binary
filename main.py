@@ -17,7 +17,7 @@ app.add_middleware(
 
 class_dict = {0:'non-maintenance',1:'maintenance'}
 @app.post("/classfier")
-def read_item(email: str):
+async def read_item(email: str):
     # print (id)
     is_maintenance = class_dict[xgb_predictor([email]).item()]
     if is_maintenance=='maintenance':
