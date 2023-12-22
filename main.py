@@ -14,6 +14,7 @@ from starlette.middleware.cors import CORSMiddleware
 # ]
 
 # app = FastAPI(middleware=middleware)
+
 app = FastAPI()
 
 
@@ -26,16 +27,14 @@ async def add_cors_headers(request, call_next):
     response.headers["Access-Control-Allow-Headers"] = "*"
     return response
 
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
-    # allow_credentials=True,
+    allow_origins=["http://0.0.0.0:8000","120.150.254.137:8000"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
 )
-
 
 from model2000API import xgb_predictor
 from email_location_126_onelabel_api_ready import cate_predictor
