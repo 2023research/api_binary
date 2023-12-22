@@ -3,26 +3,26 @@ from fastapi import FastAPI
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 
-middleware = [
-    Middleware(
-        CORSMiddleware,
-        allow_origins=['*'],
-        # allow_credentials=True,
-        allow_methods=['*'],
-        allow_headers=['*']
-    )
-]
+# middleware = [
+#     Middleware(
+#         CORSMiddleware,
+#         allow_origins=['*'],
+#         # allow_credentials=True,
+#         # allow_methods=['*'],
+#         # allow_headers=['*']
+#     )
+# ]
 
-app = FastAPI(middleware=middleware)
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=['*'],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-#     expose_headers=["*"],
-# )
+# app = FastAPI(middleware=middleware)
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    # allow_credentials=True,
+    # allow_methods=["*"],
+    # allow_headers=["*"],
+    # expose_headers=["*"],
+)
 
 
 from model2000API import xgb_predictor
