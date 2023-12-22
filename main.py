@@ -28,12 +28,12 @@ app = FastAPI(middleware=middleware)
 from model2000API import xgb_predictor
 from email_location_126_onelabel_api_ready import cate_predictor
 class_dict = {0:'non-maintenance',1:'maintenance'}
-@app.post("/classfier")
-async def read_item(email: str):
+@app.post("/piatextclassfier")
+async def read_item(piatext: str):
     # print (id)
-    is_maintenance = class_dict[xgb_predictor([email]).item()]
+    is_maintenance = class_dict[xgb_predictor([piatext]).item()]
     if is_maintenance=='maintenance':
-        cates = cate_predictor(email)
+        cates = cate_predictor(piatext)
         issues = []
         for i in range(len(cates)):
             row = cates[i]

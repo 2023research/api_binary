@@ -1,7 +1,7 @@
 import requests
 import json
 import pandas as pd
-url = "http://54.253.228.31:8000/classfier"
+url = "http://54.253.228.31:8000/piatextclassfier"
 
 
 ###################################################################
@@ -21,7 +21,7 @@ outputsample = {'is_maintenance': 'maintenance',
 print ('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print ('~~~~~~~~~~~~below is an example of the input and output.~~~~~~~~~~~~~~~~~~~')
 df=pd.read_csv('126_cate_data.csv')
-params = {"email": df.iloc[19]['Body']}
+params = {"piatext": df.iloc[19]['Body']}
 response = requests.post(url, params=params)
 res = json.loads(response.text)
 print('$$$$$$$$',res)
@@ -33,7 +33,7 @@ print ('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 print ('~~~~~~~~~~~~elow will print more examples~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 for i, email in enumerate(df['Body'].values):
     if i<20:
-        params = {"email": email}
+        params = {"piatext": email}
         response = requests.post(url, params=params)
         res = json.loads(response.text)
         print('######',res)
@@ -46,7 +46,7 @@ print ('~~~~~~below will check the performance of the binary classification ~~~~
 emails = pd.read_csv('test.csv')
 for i, email in enumerate(emails['text'].values):
     if i<10:
-        params = {"email": email}
+        params = {"piatext": email}
         response = requests.post(url, params=params)
         res = json.loads(response.text)
         print('@@@@@@@','ground truth:', emails['label'][i], res['is_maintenance'],res)
