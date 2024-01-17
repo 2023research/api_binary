@@ -4,6 +4,11 @@ import pandas as pd
 # import numpy as np
 # import xgboost
 # from sklearn.feature_extraction.text import CountVectorizer
+
+import warnings
+warnings.filterwarnings("ignore")
+
+
 def xgb_predictor(train_x):
     #######################################################################################################################
     # Implementing Text Classification  https://www.kaggle.com/code/meetnagadia/implementing-text-classification/notebook###
@@ -49,22 +54,36 @@ def xgb_predictor(train_x):
 
     # print("Count Vectors--- %s seconds ---" % (time.time() - start_time))
     # print("Xgb, Count Vectors: ",predictions[0])
-    return predictions[0]
+    return predictions#[0]
+
 
 if __name__ == '__main__':
     for name in ['andy', 'jeffrey', 'kevin', 'ray','tony', 'leon']:
         dfall = pd.read_csv('../piaAnnotation/data/'+name+'.csv', sep=',')
+        # preds=[]
+        # for row in dfall.iterrows():
+        #     row = row[1]
+        #     ID, Body = row['ID'],row['Body']
+        #     pred = xgb_predictor([Body])
+        #     preds.append(pred)
+        # print (preds)  
+        preds = xgb_predictor(dfall['Body'].values)
+        dfsave = dfall[['ID']]
+        dfsave['pred'] = preds
+        print (dfsave['pred'].value_counts())
+        # dfsave.to_csv('../results/'+name+'_pred.csv')
+        # print (dfsave)
         print (name,dfall.shape[0])
     trainDF = pd.read_csv('test.csv')
     # trainDF = df_new1.iloc[:110]
     # df_new1.columns = ['Body', 'label10']
     # print('test true label distribution:',df_new1.label10.value_counts())
-    #
-    # trainDF = df_new1[['Body', 'label10']]
-    trainDF.columns = ['text', 'label']
-    # trainDF.to_csv('./api/test.csv',index=False)
-    train_x, train_y = [trainDF.iloc[0]['text']],  [trainDF.iloc[0]['label']]
-    # print('train_y', np.unique(trainDF['label'], return_counts=True))
-    for i, x in enumerate(trainDF['text'].values):
-        # xgb_predictor([x])
-        print (trainDF.iloc[i]['label'],xgb_predictor([x]))
+    # #
+    # # trainDF = df_new1[['Body', 'label10']]
+    # trainDF.columns = ['text', 'label']
+    # # trainDF.to_csv('./api/test.csv',index=False)
+    # train_x, train_y = [trainDF.iloc[0]['text']],  [trainDF.iloc[0]['label']]
+    # # print('train_y', np.unique(trainDF['label'], return_counts=True))
+    # for i, x in enumerate(trainDF['text'].values):
+    #     # xgb_predictor([x])
+    #     print (trainDF.iloc[i]['label'],xgb_predictor([x]))
