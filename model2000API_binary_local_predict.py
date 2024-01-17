@@ -53,7 +53,7 @@ def xgb_predictor(train_x):
 
 if __name__ == '__main__':
     for name in ['andy', 'jeffrey', 'kevin', 'ray','tony', 'leon']:
-        dfall = pd.read_csv('./data/'+name+'.csv', sep=',')
+        dfall = pd.read_csv('../piaAnnotation/data/'+name+'.csv', sep=',')
         print (name,dfall.shape[0])
     trainDF = pd.read_csv('test.csv')
     # trainDF = df_new1.iloc[:110]
